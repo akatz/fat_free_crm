@@ -11,7 +11,9 @@ if ['solo','app','app_master'].include?(node[:instance_role])
     source "nginx-0.8.55-r2.ebuild"
   end 
 
-  execute "ebuild /engineyard/portage/engineyard/www-servers/nginx/nginx-0.8.55-r2.ebuild manifest"
+  execute "ebuild nginx-0.8.55-r2.ebuild digest" do
+    cwd "/engineyard/portage/engineyard/www-servers/nginx/"
+  end
 
   execute "emerge --sync"
 
