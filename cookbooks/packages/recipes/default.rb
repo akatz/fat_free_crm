@@ -10,6 +10,8 @@ remote_file "/engineyard/portage/engineyard/www-servers/nginx/nginx-0.8.55-r2.eb
   source "nginx-0.8.55.r2.ebuild"
 end 
 
+execute "ebuild /engineyard/portage/engineyard/www-servers/nginx/nginx-0.8.55-r2.ebuild manifest"
+
 execute "emerge --sync"
 
 execute "upgrade nginx" do
