@@ -18,7 +18,7 @@ if ['solo','app','app_master'].include?(node[:instance_role])
 
   execute "update-eix"
 
-  execut "local portage package.keywords" do
+  execute "local portage package.keywords" do
     command " echo '=www-servers/nginx-0.8.55-r2' >> /etc/portage/package.keywords/local"
     not_if "grep '=www-servers/nginx-0.8.55-r2' /etc/portage/package.keywords/local"
   end
