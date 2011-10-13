@@ -16,7 +16,7 @@ if ['solo','app','app_master'].include?(node[:instance_role])
     cwd "/engineyard/portage/engineyard/www-servers/nginx/"
   end
 
-  execute "update-eix"
+  execute "emerge --sync"
 
   execute "local portage package.keywords" do
     command " echo '=www-servers/nginx-0.8.55-r2' >> /etc/portage/package.keywords/local"
