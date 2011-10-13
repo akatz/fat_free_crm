@@ -12,10 +12,11 @@ if ['solo','app','app_master'].include?(node[:instance_role])
   end 
 
   execute "ebuild nginx-0.8.55-r2.ebuild digest" do
+    command "ebuild nginx-0.8.55-r2.ebuild digest"
     cwd "/engineyard/portage/engineyard/www-servers/nginx/"
   end
 
-  execute "emerge --sync"
+  execute "update-eix"
 
   execute "upgrade nginx" do
     command "emerge -1n nginx"
