@@ -7,7 +7,7 @@ remote_file "/engineyard/portage/engineyard/www-servers/nginx/nginx-0.8.55-r2.eb
   owner "root"
   group "root"
   mode 0644 
-  source "nginx-0.8.55.r2.ebuild"
+  source "nginx-0.8.55-r2.ebuild"
 end 
 
 execute "ebuild /engineyard/portage/engineyard/www-servers/nginx/nginx-0.8.55-r2.ebuild manifest"
