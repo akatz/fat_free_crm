@@ -21,25 +21,21 @@ end
 execute "untar duo" do
   cwd "/mnt/tmp/duo"
   command "tar zxf duo_unix-1.7.tar.gz"
-  user 'deploy'
 end
 
 execute "configure duo" do
   cwd "/mnt/tmp/duo/duo_unix-1.7"
   command "./configure --with-pam --prefix=/usr"
-  user 'deploy'
 end
 
 execute "make duo" do
   cwd "/mnt/tmp/duo/duo_unix-1.7"
   command "make"
-  user 'deploy'
 end
 
 execute "install duo" do
   cwd "/mnt/tmp/duo/duo_unix-1.7"
   command "make install"
-  user 'deploy'
 end
 
 directory "/mnt/tmp/duo" do
@@ -62,6 +58,8 @@ remote_file '/etc/duo/login_duo.conf' do
   source 'login_duo.conf'
   backup 0
 end
+
+execute "chown deploy:deploy /usr/sbin/login_duo"
 
 execute "/usr/sbin/login_duo" do
   command "/usr/sbin/login_duo > /tmp/link"
