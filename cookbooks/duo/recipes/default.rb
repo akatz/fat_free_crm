@@ -25,7 +25,7 @@ end
 
 execute "configure duo" do
   cwd "/mnt/tmp/duo/duo_unix-1.7"
-  command "./configure --with-pam"
+  command "./configure --with-pam --prefix=/usr"
 end
 
 execute "make duo" do
