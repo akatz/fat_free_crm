@@ -44,16 +44,16 @@ directory "/mnt/tmp/duo" do
 end
 
 remote_file '/etc/duo/pam_duo.conf' do
-  owner 'root'
-  group 'root'
+  owner 'deploy'
+  group 'deploy'
   mode 0644
   source 'pam_duo.conf'
   backup 0
 end
 
 remote_file '/etc/duo/login_duo.conf' do
-  owner 'root'
-  group 'root'
+  owner 'deploy'
+  group 'deploy'
   mode 0644
   source 'login_duo.conf'
   backup 0
