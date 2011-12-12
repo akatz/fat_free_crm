@@ -36,6 +36,7 @@ end
 execute "install duo" do
   cwd "/mnt/tmp/duo/duo_unix-1.7"
   command "make install"
+  user 'deploy'
 end
 
 directory "/mnt/tmp/duo" do
