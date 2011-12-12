@@ -21,16 +21,19 @@ end
 execute "untar duo" do
   cwd "/mnt/tmp/duo"
   command "tar zxf duo_unix-1.7.tar.gz"
+  user 'deploy'
 end
 
 execute "configure duo" do
   cwd "/mnt/tmp/duo/duo_unix-1.7"
   command "./configure --with-pam --prefix=/usr"
+  user 'deploy'
 end
 
 execute "make duo" do
   cwd "/mnt/tmp/duo/duo_unix-1.7"
   command "make"
+  user 'deploy'
 end
 
 execute "install duo" do
