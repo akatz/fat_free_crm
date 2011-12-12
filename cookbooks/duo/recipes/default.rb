@@ -1,3 +1,7 @@
+# 
+# CookBook Name:: duo
+# Recipe:: default
+#
 remote_file "/mnt/tmp/duo/duo_unix-1.7.tar.gz" do
   source "https://github.com/downloads/duosecurity/duo_unix/duo_unix-1.7.tar.gz"
   owner "root"
