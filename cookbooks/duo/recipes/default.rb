@@ -46,7 +46,7 @@ end
 remote_file '/etc/duo/pam_duo.conf' do
   owner 'deploy'
   group 'deploy'
-  mode 0644
+  mode 0600
   source 'pam_duo.conf'
   backup 0
 end
@@ -54,7 +54,7 @@ end
 remote_file '/etc/duo/login_duo.conf' do
   owner 'deploy'
   group 'deploy'
-  mode 0644
+  mode 0600
   source 'login_duo.conf'
   backup 0
 end
