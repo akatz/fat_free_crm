@@ -62,6 +62,7 @@ end
 execute "chown deploy:deploy /usr/sbin/login_duo"
 
 bash "/usr/sbin/login_duo > /tmp/link" do
+  command "/usr/sbin/login_duo > /tmp/link"
   user 'deploy'
 end
 
