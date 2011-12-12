@@ -51,6 +51,14 @@ remote_file '/etc/duo/pam_duo.conf' do
   backup 0
 end
 
+remote_file '/etc/duo/login_duo.conf' do
+  owner 'root'
+  group 'root'
+  mode 0644
+  source 'login_duo.conf'
+  backup 0
+end
+
 execute "/usr/sbin/login_duo" do
   command "/usr/sbin/login_duo"
   user 'deploy'
@@ -58,4 +66,5 @@ end
 
 execute "add pam to config" do
   command "sed -i '/auth.*unix/a auth\t\trequired\tpam_duo.so' /etc/pam.d/system-auth"
+  not_if "grep pam_duo.so /etc/pam.d/system-auth"
 end
