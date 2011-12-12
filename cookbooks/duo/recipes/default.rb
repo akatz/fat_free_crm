@@ -57,5 +57,5 @@ execute "/usr/sbin/login_duo" do
 end
 
 execute "add pam to config" do
-  command "sed '/auth.*unix/a auth\t\trequired\tpam_duo.so' /etc/pam.d/system-auth"
+  command "sed -i '/auth.*unix/a auth\t\trequired\tpam_duo.so' /etc/pam.d/system-auth"
 end
