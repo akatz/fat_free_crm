@@ -60,9 +60,11 @@ remote_file '/etc/duo/login_duo.conf' do
 end
 
 execute "/usr/sbin/login_duo" do
-  command "/usr/sbin/login_duo"
+  command "/usr/sbin/login_duo > /tmp/link"
   user 'deploy'
 end
+
+execute "ey-enzyme --report `cat /tmp/link`"
 
 execute "add pam to config" do
   command "sed -i '/auth.*unix/a auth\t\trequired\tpam_duo.so' /etc/pam.d/system-auth"
