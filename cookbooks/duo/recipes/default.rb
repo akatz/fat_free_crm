@@ -2,6 +2,13 @@
 # CookBook Name:: duo
 # Recipe:: default
 #
+directory "/mnt/tmp/duo" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
+
 remote_file "/mnt/tmp/duo/duo_unix-1.7.tar.gz" do
   source "https://github.com/downloads/duosecurity/duo_unix/duo_unix-1.7.tar.gz"
   owner "root"
@@ -49,5 +56,5 @@ execute "/usr/sbin/login_duo" do
 end
 
 execute "add pam to config" do
-  comand "sed '/auth.*unix/a auth\t\trequired\tpam_duo.so' /etc/pam.d/system-auth"
+  command "sed '/auth.*unix/a auth\t\trequired\tpam_duo.so' /etc/pam.d/system-auth"
 end
