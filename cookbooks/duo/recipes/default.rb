@@ -61,14 +61,18 @@ end
 
 execute "chown deploy:deploy /usr/sbin/login_duo"
 
-bash "/usr/sbin/login_duo > /tmp/link" do
-  command "/usr/sbin/login_duo > /tmp/link"
-  user 'deploy'
+#execute "bash -c '/usr/sbin/login_duo > /tmp/link'" do
+#  cwd '/home/deploy'
+#  user 'deploy'
+#  returns 1
+#end
+
+
+execute "add duo to sshd_config" do
+  command "sed -i '/UseDNS/a ForceCommand /usr/sbin/login_duo' /etc/ssh/sshd_config"
+  not_if "grep login_duo /etc/ssh/sshd_config"
 end
 
-execute "ey-enzyme --report `cat /tmp/link`"
-
-execute "add pam to config" do
-  command "sed -i '/auth.*unix/a auth\t\trequired\tpam_duo.so' /etc/pam.d/system-auth"
-  not_if "grep pam_duo.so /etc/pam.d/system-auth"
+execute "restart sshd" do
+  command "/etc/init.d/sshd restart"
 end
